@@ -1,0 +1,250 @@
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN SYSTEM — Alan do Carmo Portfolio
+   ============================================ */
+
+/* ---------- Custom CSS Variables ---------- */
+:root {
+  --color-bg-primary: #0a0f1c;
+  --color-bg-secondary: #111827;
+  --color-bg-card: #1a2235;
+  --color-bg-card-hover: #1f2a42;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-purple: #8b5cf6;
+  --color-accent-blue: #3b82f6;
+  --color-border: #1e293b;
+  --color-border-hover: #334155;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ---------- Global Resets ---------- */
+/* Margin and padding resets are handled by Tailwind's Preflight to prevent Cascade Layers conflicts with mx-auto */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-cyan);
+  border-radius: 999px;
+}
+
+::selection {
+  background-color: rgba(6, 182, 212, 0.3);
+  color: #fff;
+}
+
+/* ---------- Animated Gradient Text ---------- */
+.gradient-text {
+  background: linear-gradient(135deg, #06b6d4, #8b5cf6, #3b82f6);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ---------- Glass Card Effect ---------- */
+.glass-card {
+  background: rgba(26, 34, 53, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(31, 42, 66, 0.8);
+  border-color: rgba(6, 182, 212, 0.2);
+  box-shadow:
+    0 0 30px rgba(6, 182, 212, 0.06),
+    0 20px 40px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px);
+}
+
+/* ---------- Glow Button ---------- */
+.glow-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.glow-btn-primary {
+  background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+  color: #fff;
+}
+
+.glow-btn-primary:hover {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.35), 0 0 60px rgba(139, 92, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+.glow-btn-outline {
+  background: transparent;
+  color: var(--color-accent-cyan);
+  border: 1.5px solid rgba(6, 182, 212, 0.4);
+}
+
+.glow-btn-outline:hover {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: var(--color-accent-cyan);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ---------- Section Title ---------- */
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  max-width: 600px;
+}
+
+/* ---------- Particle Canvas ---------- */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ---------- Animated Underline ---------- */
+.nav-link {
+  position: relative;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+  border-radius: 999px;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-text-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ---------- Timeline ---------- */
+.timeline-line {
+  position: absolute;
+  left: 1.25rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #06b6d4, #8b5cf6, transparent);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.35rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+  z-index: 1;
+}
+
+/* ---------- Skill Badge ---------- */
+.skill-icon-wrapper {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(139, 92, 246, 0.12));
+  transition: all 0.3s;
+}
+
+.glass-card:hover .skill-icon-wrapper {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.22), rgba(139, 92, 246, 0.22));
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.15);
+}
+
+/* ---------- Floating Badge ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.floating {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* ---------- Responsive typography ---------- */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.65rem;
+  }
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+}
