@@ -57,8 +57,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="text-slate-400/90 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10"
         >
-          Profissional em transição de carreira — da área administrativa e financeira para o desenvolvimento de software.
-          Combinando visão de negócio com código, crio{' '}
+          Profissional com experiência na área administrativa e financeira, transicionando para o desenvolvimento de software. Combinando visão de negócio com código, crio{' '}
           <span className="text-cyan-400 font-semibold">automações inteligentes</span>,{' '}
           <span className="text-purple-400 font-semibold">soluções web</span> e sistemas que resolvem problemas reais,
           com foco em eficiência e impacto.
@@ -76,7 +75,7 @@ export default function Hero() {
             Ver Projetos
           </a>
           <a
-            href="/Alan_da_Silva_do_Carmo_CV.pdf"
+            href="/CV_Alan_Carmo.pdf"
             download
             className="glow-btn glow-btn-outline"
           >
