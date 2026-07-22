@@ -6,7 +6,7 @@ import { GithubIcon, LinkedinIcon, WhatsappIcon } from './Icons'
 const CONTACTS = [
   { icon: Mail, label: 'Email', value: 'alan-carmo@hotmail.com', href: 'mailto:alan-carmo@hotmail.com', color: 'text-cyan-400', bg: 'bg-cyan-400/[0.08]', border: 'border-cyan-400/15' },
   { icon: LinkedinIcon, label: 'LinkedIn', value: '/in/alancarmo', href: 'https://www.linkedin.com/in/alancarmo', color: 'text-blue-400', bg: 'bg-blue-400/[0.08]', border: 'border-blue-400/15' },
-  { icon: GithubIcon, label: 'GitHub', value: '/maiornerd', href: 'https://github.com/maiornerd/Alan-do-Carmo', color: 'text-purple-400', bg: 'bg-purple-400/[0.08]', border: 'border-purple-400/15' },
+  { icon: GithubIcon, label: 'GitHub', value: '/alan-carmo', href: 'https://github.com/alan-carmo/Alan-do-Carmo', color: 'text-purple-400', bg: 'bg-purple-400/[0.08]', border: 'border-purple-400/15' },
   { icon: MapPin, label: 'Localização', value: 'Rio de Janeiro – RJ', href: null, color: 'text-pink-400', bg: 'bg-pink-400/[0.08]', border: 'border-pink-400/15' },
 ]
 
