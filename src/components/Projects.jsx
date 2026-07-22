@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { ExternalLink, Layers, FileSpreadsheet } from 'lucide-react'
+import { ExternalLink, Layers, FileSpreadsheet, MapPin } from 'lucide-react'
 import { GithubIcon } from './Icons'
 
 /**
@@ -38,6 +38,23 @@ const PROJECTS = [
     icon: FileSpreadsheet,
     gradient: 'from-purple-500/20 to-pink-500/20',
     accent: 'purple',
+  },
+  {
+    title: 'Rio Bus — Rastreamento de Ônibus em Tempo Real',
+    description:
+      'Aplicação Full-Stack desenvolvida para rastreamento em tempo real da frota de ônibus da cidade do Rio de Janeiro. O sistema consome dados de GPS oficiais da prefeitura via satélite e renderiza as posições, rotas e paradas em um mapa interativo, processando arquivos GTFS.',
+    features: [
+      'Mapa interativo em tempo real',
+      'Consumo de API GPS oficial',
+      'Processamento GTFS',
+      'Backend Proxy (CORS)',
+      'PWA & Service Workers',
+    ],
+    tech: ['JavaScript', 'HTML5', 'CSS3', 'Python', 'FastAPI', 'Leaflet.js'],
+    github: 'https://github.com/alan-carmo/Rio-Bus',
+    icon: MapPin,
+    gradient: 'from-emerald-500/20 to-teal-500/20',
+    accent: 'emerald',
   },
 ]
 
@@ -83,11 +100,17 @@ export default function Projects() {
                 {/* Icon + title */}
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`skill-icon-wrapper shrink-0 ${
-                    project.accent === 'purple' ? '!bg-gradient-to-br !from-purple-500/15 !to-pink-500/15' : ''
+                    project.accent === 'purple' ? '!bg-gradient-to-br !from-purple-500/15 !to-pink-500/15'
+                    : project.accent === 'emerald' ? '!bg-gradient-to-br !from-emerald-500/15 !to-teal-500/15'
+                    : ''
                   }`}>
                     <project.icon
                       size={22}
-                      className={project.accent === 'purple' ? 'text-purple-400' : 'text-cyan-400'}
+                      className={
+                        project.accent === 'purple' ? 'text-purple-400'
+                        : project.accent === 'emerald' ? 'text-emerald-400'
+                        : 'text-cyan-400'
+                      }
                     />
                   </div>
                   <h3 className="font-bold text-slate-200 text-base leading-snug">
@@ -120,6 +143,8 @@ export default function Projects() {
                       className={`text-[0.68rem] font-semibold px-2.5 py-1 rounded-md border ${
                         project.accent === 'purple'
                           ? 'text-purple-400 bg-purple-400/[0.06] border-purple-400/20'
+                          : project.accent === 'emerald'
+                          ? 'text-emerald-400 bg-emerald-400/[0.06] border-emerald-400/20'
                           : 'text-cyan-400 bg-cyan-400/[0.06] border-cyan-400/20'
                       }`}
                     >
@@ -139,6 +164,8 @@ export default function Projects() {
                   className={`inline-flex items-center gap-2 text-sm font-semibold transition-colors ${
                     project.accent === 'purple'
                       ? 'text-purple-400 hover:text-purple-300'
+                      : project.accent === 'emerald'
+                      ? 'text-emerald-400 hover:text-emerald-300'
                       : 'text-cyan-400 hover:text-cyan-300'
                   }`}
                 >
