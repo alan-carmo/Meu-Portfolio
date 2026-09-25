@@ -1,10 +1,14 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, FileDown, Mail } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 /**
  * Hero — full-screen opening section with name, title, intro, and CTAs.
  */
 export default function Hero() {
+  const { t } = useLanguage()
+  const h = t.hero
+
   return (
     <section
       id="inicio"
@@ -25,7 +29,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] text-cyan-400 text-xs font-semibold tracking-wider uppercase"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          Disponível para oportunidades
+          {h.badge}
         </motion.div>
 
         {/* Name */}
@@ -35,8 +39,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.35 }}
           className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-4"
         >
-          Alan da Silva{' '}
-          <span className="gradient-text">do Carmo</span>
+          {h.title[0]}
+          <span className="gradient-text">{h.title[1]}</span>
         </motion.h1>
 
         {/* Title */}
@@ -47,7 +51,7 @@ export default function Hero() {
           className="text-lg sm:text-xl text-slate-400 font-medium mb-6"
           style={{ fontFamily: 'var(--font-mono)' }}
         >
-          Desenvolvedor de Software | Python &amp; JavaScript
+          {h.subtitle}
         </motion.p>
 
         {/* Description */}
@@ -57,10 +61,11 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="text-slate-400/90 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10"
         >
-          Profissional com experiência na área administrativa e financeira, transicionando para o desenvolvimento de software. Combinando visão de negócio com código, crio{' '}
-          <span className="text-cyan-400 font-semibold">automações inteligentes</span>,{' '}
-          <span className="text-purple-400 font-semibold">soluções web</span> e sistemas que resolvem problemas reais,
-          com foco em eficiência e impacto.
+          {h.description.before}
+          <span className="text-cyan-400 font-semibold">{h.description.highlight1}</span>
+          {h.description.middle}
+          <span className="text-purple-400 font-semibold">{h.description.highlight2}</span>
+          {h.description.after}
         </motion.p>
 
         {/* CTAs */}
@@ -72,7 +77,7 @@ export default function Hero() {
         >
           <a href="#projetos" className="glow-btn glow-btn-primary">
             <ArrowDown size={16} />
-            Ver Projetos
+            {h.ctaProjects}
           </a>
           <a
             href="/CV_Alan_Carmo.pdf"
@@ -80,11 +85,11 @@ export default function Hero() {
             className="glow-btn glow-btn-outline"
           >
             <FileDown size={16} />
-            Baixar Currículo
+            {h.ctaResume}
           </a>
           <a href="#contato" className="glow-btn glow-btn-outline">
             <Mail size={16} />
-            Contato
+            {h.ctaContact}
           </a>
         </motion.div>
 

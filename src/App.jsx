@@ -1,3 +1,4 @@
+import { LanguageProvider } from './i18n/LanguageContext'
 import ParticleBackground from './components/ParticleBackground'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -16,7 +17,7 @@ import ScrollToTop from './components/ScrollToTop'
  */
 export default function App() {
   return (
-    <>
+    <LanguageProvider>
       <ParticleBackground />
       <Navbar />
       <main className="relative z-10">
@@ -31,6 +32,6 @@ export default function App() {
       </main>
       <Footer />
       <ScrollToTop />
-    </>
+    </LanguageProvider>
   )
 }

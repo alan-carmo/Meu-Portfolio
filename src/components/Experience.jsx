@@ -1,51 +1,18 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Building2, CalendarDays, ChevronRight } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 /**
  * Experience — professional timeline with animated entries.
  */
-const TIMELINE = [
-  {
-    company: 'DeMillus S.A. Indústria e Comércio',
-    role: 'Assistente de Administração (Foco em Análise de Dados)',
-    period: 'Mai/2024 – Atual',
-    current: true,
-    responsibilities: [
-      'Manutenção lógica de tabelas salariais e estruturas de cargos',
-      'Análise de dados estratégicos para gestão de pessoas',
-      'Criação de dashboards e indicadores de desempenho',
-      'Apoio direto à tomada de decisão gerencial',
-    ],
-  },
-  {
-    company: 'DeMillus S.A. Indústria e Comércio',
-    role: 'Auxiliar de Administração II (Crédito e Risco)',
-    period: 'Mai/2018 – Mai/2024',
-    current: false,
-    responsibilities: [
-      'Análise financeira de clientes e portfólio de crédito',
-      'Mitigação de riscos e monitoramento de inadimplência',
-      'Elaboração de relatórios analíticos para diretoria',
-      'Negociação e renegociação de contratos comerciais',
-    ],
-  },
-  {
-    company: 'Mastercasa Móveis e Decorações Ltda.',
-    role: 'Auxiliar de Faturamento',
-    period: 'Out/2013 – Jan/2017',
-    current: false,
-    responsibilities: [
-      'Emissão de notas fiscais e controle de faturamento',
-      'Gestão de documentação fiscal e contábil',
-      'Suporte às operações administrativas e financeiras',
-    ],
-  },
-]
+const CURRENT_FLAGS = [true, false, false]
 
 export default function Experience() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { t } = useLanguage()
+  const e = t.experience
 
   return (
     <section id="experiencia" className="relative py-24 px-6">
@@ -57,9 +24,9 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <p className="text-cyan-400 font-semibold text-sm tracking-widest uppercase mb-2">
-            Trajetória profissional
+            {e.tagline}
           </p>
-          <h2 className="section-title gradient-text">Experiência Profissional</h2>
+          <h2 className="section-title gradient-text">{e.title}</h2>
         </motion.div>
 
         {/* Timeline */}
@@ -67,7 +34,7 @@ export default function Experience() {
           {/* Vertical line */}
           <div className="timeline-line" />
 
-          {TIMELINE.map((item, idx) => (
+          {e.timeline.map((item, idx) => (
             <motion.div
               key={`${item.company}-${item.role}`}
               initial={{ opacity: 0, x: -20 }}
@@ -85,9 +52,9 @@ export default function Experience() {
                     <CalendarDays size={13} />
                     {item.period}
                   </span>
-                  {item.current && (
+                  {CURRENT_FLAGS[idx] && (
                     <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded-full bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 uppercase tracking-wider">
-                      Atual
+                      {e.current}
                     </span>
                   )}
                 </div>

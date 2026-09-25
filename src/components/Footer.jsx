@@ -1,12 +1,6 @@
 import { Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './Icons'
-
-const LINKS = [
-  { label: 'Início', id: 'inicio' },
-  { label: 'Sobre', id: 'sobre' },
-  { label: 'Projetos', id: 'projetos' },
-  { label: 'Contato', id: 'contato' },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 const SOCIAL = [
   { icon: GithubIcon, href: 'https://github.com/maiornerd/Alan-do-Carmo', label: 'GitHub' },
@@ -15,6 +9,9 @@ const SOCIAL = [
 ]
 
 export default function Footer() {
+  const { t } = useLanguage()
+  const f = t.footer
+
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
@@ -25,14 +22,14 @@ export default function Footer() {
           <div>
             <p className="text-lg font-extrabold gradient-text mb-2">{'<Alan />'}</p>
             <p className="text-sm text-slate-500 leading-relaxed">
-              Desenvolvedor de Software focado em automações Python e aplicações web JavaScript.
+              {f.brand}
             </p>
           </div>
           {/* Quick links */}
           <div>
-            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Links Rápidos</p>
+            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">{f.quickLinks}</p>
             <ul className="space-y-2">
-              {LINKS.map((l) => (
+              {f.links.map((l) => (
                 <li key={l.id}>
                   <button onClick={() => scrollTo(l.id)} className="text-sm text-slate-500 hover:text-cyan-400 transition bg-transparent border-none cursor-pointer">
                     {l.label}
@@ -43,7 +40,7 @@ export default function Footer() {
           </div>
           {/* Social */}
           <div>
-            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Redes Sociais</p>
+            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">{f.socialTitle}</p>
             <div className="flex gap-3">
               {SOCIAL.map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="w-9 h-9 rounded-lg flex items-center justify-center bg-slate-800/50 border border-slate-700/40 text-slate-400 hover:text-cyan-400 hover:border-cyan-400/30 transition-all">
@@ -57,10 +54,10 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/[0.04] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-slate-600">
-            © {new Date().getFullYear()} Alan da Silva do Carmo. Todos os direitos reservados.
+            © {new Date().getFullYear()} Alan da Silva do Carmo. {f.copyright}
           </p>
           <p className="text-xs text-slate-600 flex items-center gap-1">
-            Desenvolvido com dedicação por <span className="text-cyan-400 font-semibold ml-1">Alan da Silva do Carmo</span>.
+            {f.madeBy} <span className="text-cyan-400 font-semibold ml-1">Alan da Silva do Carmo</span>.
           </p>
         </div>
       </div>

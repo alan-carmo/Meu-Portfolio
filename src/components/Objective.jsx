@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Target, Rocket } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 /**
  * Objective — Professional goals section.
@@ -8,6 +9,8 @@ import { Target, Rocket } from 'lucide-react'
 export default function Objective() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { t } = useLanguage()
+  const o = t.objective
 
   return (
     <section id="objetivo" className="relative py-24 px-6">
@@ -19,9 +22,9 @@ export default function Objective() {
           className="text-center mb-12"
         >
           <p className="text-cyan-400 font-semibold text-sm tracking-widest uppercase mb-2">
-            Onde quero chegar
+            {o.tagline}
           </p>
-          <h2 className="section-title gradient-text">Objetivo Profissional</h2>
+          <h2 className="section-title gradient-text">{o.title}</h2>
         </motion.div>
 
         <motion.div
@@ -39,28 +42,30 @@ export default function Objective() {
                 <Target size={22} className="text-cyan-400" />
               </div>
               <h3 className="text-lg font-bold text-slate-200">
-                Desenvolvedor Back-end & Automações
+                {o.roleTitle}
               </h3>
             </div>
 
             <p className="text-slate-300 leading-relaxed">
-              Busco uma oportunidade como <span className="text-cyan-400 font-semibold">Desenvolvedor de Software</span> em
-              equipes que valorizem aprendizado contínuo, boas práticas de engenharia de software e impacto real nos
-              resultados do negócio.
+              {o.p1.before}
+              <span className="text-cyan-400 font-semibold">{o.p1.highlight}</span>
+              {o.p1.after}
             </p>
 
             <p className="text-slate-300 leading-relaxed">
-              Meu foco está em <span className="text-purple-400 font-semibold">desenvolvimento back-end</span>,{' '}
-              <span className="text-cyan-400 font-semibold">automações com Python</span> e{' '}
-              <span className="text-purple-400 font-semibold">aplicações web com JavaScript</span> — áreas onde posso
-              combinar minha experiência analítica com a capacidade técnica de criar soluções escaláveis e bem estruturadas.
+              {o.p2.before}
+              <span className="text-purple-400 font-semibold">{o.p2.h1}</span>
+              {o.p2.m1}
+              <span className="text-cyan-400 font-semibold">{o.p2.h2}</span>
+              {o.p2.m2}
+              <span className="text-purple-400 font-semibold">{o.p2.h3}</span>
+              {o.p2.after}
             </p>
 
             <div className="flex items-start gap-3 p-4 rounded-xl bg-cyan-400/[0.04] border border-cyan-400/10">
               <Rocket size={18} className="text-cyan-400 mt-0.5 shrink-0" />
               <p className="text-sm text-slate-400 leading-relaxed">
-                Estou comprometido em evoluir rapidamente, contribuir com entregas de qualidade desde o primeiro dia e
-                agregar valor com a minha visão híbrida de negócios e tecnologia.
+                {o.commitment}
               </p>
             </div>
           </div>

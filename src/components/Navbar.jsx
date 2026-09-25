@@ -1,26 +1,20 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
+import LanguageToggle from './LanguageToggle'
 
 /**
  * Navbar — sticky responsive navigation with hamburger menu for mobile.
  * Highlights the active section based on scroll position.
  */
-const NAV_LINKS = [
-  { id: 'inicio', label: 'Início' },
-  { id: 'sobre', label: 'Sobre' },
-  { id: 'objetivo', label: 'Objetivo' },
-  { id: 'competencias', label: 'Competências' },
-  { id: 'projetos', label: 'Projetos' },
-  { id: 'experiencia', label: 'Experiência' },
-  { id: 'formacao', label: 'Formação' },
-  { id: 'contato', label: 'Contato' },
-]
+const NAV_IDS = ['inicio', 'sobre', 'objetivo', 'competencias', 'projetos', 'experiencia', 'formacao', 'contato']
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
+  const { t } = useLanguage()
 
   // Track scroll for navbar background and active section
   useEffect(() => {
@@ -28,7 +22,7 @@ export default function Navbar() {
       setScrolled(window.scrollY > 40)
 
       // Find active section
-      const sections = NAV_LINKS.map((l) => document.getElementById(l.id)).filter(Boolean)
+      const sections = NAV_IDS.map((id) => document.getElementById(id)).filter(Boolean)
       let current = 'inicio'
       for (const section of sections) {
         const rect = section.getBoundingClientRect()
@@ -68,24 +62,27 @@ export default function Navbar() {
 
         {/* Desktop links container */}
         <div className="hidden md:flex items-center gap-4 lg:gap-7">
-          {NAV_LINKS.map((link) => (
+          {NAV_IDS.map((id) => (
             <button
-              key={link.id}
-              onClick={() => handleNav(link.id)}
+              key={id}
+              onClick={() => handleNav(id)}
               className={`nav-link cursor-pointer bg-transparent border-none text-xs lg:text-sm ${
-                activeSection === link.id ? 'active' : ''
+                activeSection === id ? 'active' : ''
               }`}
             >
-              {link.label}
+              {t.nav[id]}
             </button>
           ))}
+
+          {/* Language toggle — desktop */}
+          <LanguageToggle />
         </div>
 
         {/* Mobile hamburger */}
         <button
           className="md:hidden text-slate-300 hover:text-cyan-400 transition bg-transparent border-none cursor-pointer absolute right-6 z-10"
           onClick={() => setMobileOpen((v) => !v)}
-          aria-label={mobileOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -102,19 +99,24 @@ export default function Navbar() {
             className="md:hidden bg-[#0a0f1c]/95 backdrop-blur-xl border-b border-white/[0.06] overflow-hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
-              {NAV_LINKS.map((link) => (
+              {NAV_IDS.map((id) => (
                 <button
-                  key={link.id}
-                  onClick={() => handleNav(link.id)}
+                  key={id}
+                  onClick={() => handleNav(id)}
                   className={`text-left py-2.5 px-3 rounded-lg transition-all cursor-pointer bg-transparent border-none text-sm font-medium ${
-                    activeSection === link.id
+                    activeSection === id
                       ? 'text-cyan-400 bg-cyan-400/[0.06]'
                       : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.03]'
                   }`}
                 >
-                  {link.label}
+                  {t.nav[id]}
                 </button>
               ))}
+
+              {/* Language toggle — mobile */}
+              <div className="pt-2 pl-2">
+                <LanguageToggle />
+              </div>
             </div>
           </motion.div>
         )}

@@ -3,59 +3,12 @@ import { useRef } from 'react'
 import {
   Code2, Globe, Database, Wrench, Users,
 } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 /**
  * Skills — Technical competencies grouped by category with animated cards.
  */
-const CATEGORIES = [
-  {
-    icon: Code2,
-    title: 'Linguagens',
-    skills: [
-      { name: 'Python', level: 80 },
-      { name: 'JavaScript (ES6+)', level: 75 },
-      { name: 'C# (.NET)', level: 40 },
-    ],
-  },
-  {
-    icon: Globe,
-    title: 'Front-end',
-    skills: [
-      { name: 'HTML5', level: 85 },
-      { name: 'CSS3', level: 80 },
-      { name: 'React Native (Básico)', level: 30 },
-    ],
-  },
-  {
-    icon: Database,
-    title: 'Banco de Dados',
-    skills: [
-      { name: 'MySQL', level: 65 },
-      { name: 'SQL Server', level: 60 },
-    ],
-  },
-  {
-    icon: Wrench,
-    title: 'Ferramentas',
-    skills: [
-      { name: 'Git', level: 75 },
-      { name: 'GitHub', level: 80 },
-      { name: 'VS Code', level: 90 },
-      { name: 'Excel Avançado', level: 95 },
-      { name: 'Power BI (Noções)', level: 35 },
-    ],
-  },
-  {
-    icon: Users,
-    title: 'Soft Skills',
-    skills: [
-      { name: 'Resolução de Problemas' },
-      { name: 'Trabalho em Equipe' },
-      { name: 'Comunicação Clara' },
-      { name: 'Visão de Dono' },
-    ],
-  },
-]
+const CATEGORY_ICONS = [Code2, Globe, Database, Wrench, Users]
 
 function SkillBar({ name, level, delay, isInView }) {
   return (
@@ -83,6 +36,8 @@ function SkillBar({ name, level, delay, isInView }) {
 export default function Skills() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { t } = useLanguage()
+  const s = t.skills
 
   return (
     <section id="competencias" className="relative py-24 px-6">
@@ -99,43 +54,46 @@ export default function Skills() {
           className="text-center mb-16"
         >
           <p className="text-cyan-400 font-semibold text-sm tracking-widest uppercase mb-2">
-            Stack técnica
+            {s.tagline}
           </p>
-          <h2 className="section-title gradient-text">Competências Técnicas</h2>
+          <h2 className="section-title gradient-text">{s.title}</h2>
           <p className="section-subtitle mx-auto mt-3">
-            Tecnologias e habilidades que utilizo para criar soluções eficientes.
+            {s.subtitle}
           </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {CATEGORIES.map((cat, catIdx) => (
-            <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 25 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 + catIdx * 0.1 }}
-              className="glass-card p-6 flex flex-col gap-5"
-            >
-              <div className="flex items-center gap-3">
-                <div className="skill-icon-wrapper">
-                  <cat.icon size={20} className="text-cyan-400" />
+          {s.categories.map((cat, catIdx) => {
+            const Icon = CATEGORY_ICONS[catIdx]
+            return (
+              <motion.div
+                key={cat.title}
+                initial={{ opacity: 0, y: 25 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.15 + catIdx * 0.1 }}
+                className="glass-card p-6 flex flex-col gap-5"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="skill-icon-wrapper">
+                    <Icon size={20} className="text-cyan-400" />
+                  </div>
+                  <h3 className="font-bold text-slate-200 text-sm tracking-wide">{cat.title}</h3>
                 </div>
-                <h3 className="font-bold text-slate-200 text-sm tracking-wide">{cat.title}</h3>
-              </div>
 
-              <div className="space-y-4">
-                {cat.skills.map((s, sIdx) => (
-                  <SkillBar
-                    key={s.name}
-                    name={s.name}
-                    level={s.level}
-                    delay={0.3 + sIdx * 0.08}
-                    isInView={isInView}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                <div className="space-y-4">
+                  {cat.skills.map((sk, sIdx) => (
+                    <SkillBar
+                      key={sk.name}
+                      name={sk.name}
+                      level={sk.level}
+                      delay={0.3 + sIdx * 0.08}
+                      isInView={isInView}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
