@@ -162,6 +162,11 @@ const translations = {
           description: 'Aplicação Full-Stack desenvolvida para rastreamento em tempo real da frota de ônibus da cidade do Rio de Janeiro. O sistema consome dados de GPS oficiais da prefeitura via satélite e renderiza as posições, rotas e paradas em um mapa interativo, processando arquivos GTFS.',
           features: ['Mapa interativo em tempo real', 'Consumo de API GPS oficial', 'Processamento GTFS', 'Backend Proxy (CORS)', 'PWA & Service Workers'],
         },
+        {
+          title: 'CompensaHub — Gestão de Cargos e Salários',
+          description: 'Um sistema B2B que transforma a gestão de cargos e salários de uma empresa, substituindo planilhas complexas por uma plataforma web com simulações de impacto financeiro, análise de equidade salarial e relatórios executivos automatizados.',
+          features: ['Simulação de impacto financeiro', 'Análise de equidade salarial', 'Relatórios executivos', 'Plataforma B2B'],
+        },
       ],
     },
 
@@ -409,6 +414,11 @@ const translations = {
           title: 'Rio Bus — Real-Time Bus Tracking',
           description: 'Full-Stack application developed for real-time tracking of the bus fleet in Rio de Janeiro. The system consumes official GPS data from the city government via satellite and renders positions, routes, and stops on an interactive map, processing GTFS files.',
           features: ['Real-time interactive map', 'Official GPS API consumption', 'GTFS processing', 'Backend Proxy (CORS)', 'PWA & Service Workers'],
+        },
+        {
+          title: 'CompensaHub — Job & Salary Management',
+          description: 'A B2B system that transforms a company\'s job and salary management, replacing complex spreadsheets with a web platform featuring financial impact simulations, salary equity analysis, and automated executive reports.',
+          features: ['Financial impact simulation', 'Salary equity analysis', 'Executive reports', 'B2B Platform'],
         },
       ],
     },

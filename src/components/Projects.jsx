@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { ExternalLink, Layers, FileSpreadsheet, MapPin } from 'lucide-react'
+import { ExternalLink, Layers, FileSpreadsheet, MapPin, DollarSign } from 'lucide-react'
 import { GithubIcon } from './Icons'
 import { useLanguage } from '../i18n/LanguageContext'
 
@@ -28,6 +28,13 @@ const PROJECT_META = [
     icon: MapPin,
     gradient: 'from-emerald-500/20 to-teal-500/20',
     accent: 'emerald',
+  },
+  {
+    tech: ['JavaScript', 'React', 'Node.js', 'CSS3'],
+    github: 'https://github.com/alan-carmo/compensahub',
+    icon: DollarSign,
+    gradient: 'from-amber-500/20 to-orange-500/20',
+    accent: 'amber',
   },
 ]
 
@@ -79,6 +86,7 @@ export default function Projects() {
                     <div className={`skill-icon-wrapper shrink-0 ${
                       meta.accent === 'purple' ? '!bg-gradient-to-br !from-purple-500/15 !to-pink-500/15'
                       : meta.accent === 'emerald' ? '!bg-gradient-to-br !from-emerald-500/15 !to-teal-500/15'
+                      : meta.accent === 'amber' ? '!bg-gradient-to-br !from-amber-500/15 !to-orange-500/15'
                       : ''
                     }`}>
                       <meta.icon
@@ -86,6 +94,7 @@ export default function Projects() {
                         className={
                           meta.accent === 'purple' ? 'text-purple-400'
                           : meta.accent === 'emerald' ? 'text-emerald-400'
+                          : meta.accent === 'amber' ? 'text-amber-400'
                           : 'text-cyan-400'
                         }
                       />
@@ -122,6 +131,8 @@ export default function Projects() {
                             ? 'text-purple-400 bg-purple-400/[0.06] border-purple-400/20'
                             : meta.accent === 'emerald'
                             ? 'text-emerald-400 bg-emerald-400/[0.06] border-emerald-400/20'
+                            : meta.accent === 'amber'
+                            ? 'text-amber-400 bg-amber-400/[0.06] border-amber-400/20'
                             : 'text-cyan-400 bg-cyan-400/[0.06] border-cyan-400/20'
                         }`}
                       >
@@ -143,6 +154,8 @@ export default function Projects() {
                         ? 'text-purple-400 hover:text-purple-300'
                         : meta.accent === 'emerald'
                         ? 'text-emerald-400 hover:text-emerald-300'
+                        : meta.accent === 'amber'
+                        ? 'text-amber-400 hover:text-amber-300'
                         : 'text-cyan-400 hover:text-cyan-300'
                     }`}
                   >
